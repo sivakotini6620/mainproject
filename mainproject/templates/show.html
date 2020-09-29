@@ -1,0 +1,41 @@
+{% extends  'base.html' %}
+
+
+{% block content%}
+
+<table align="center" border="1">
+
+            <h1>Product Detialse </h1>
+
+    <thead>
+        <tr>
+            <td>Productname</td>
+            <td>Productcom</td>
+            <td>Productid</td>
+            <td>Productmufc</td>
+            <td>Productcost</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in pro %}
+            <tr>
+                <td>{{ product.Productname}}</td>
+                <td>{{ product.Productcom }}</td>
+                <td>{{ product.Productid }}</td>
+                <td>{{ product.Productmufc }}</td>
+                <td>{{ product.Productcost }}</td>
+                <td>
+                    <a href="{% url 'update' product.id %}" class="btn btn-warning btn-sm">Update</a>
+                    <form action="{% url 'dalete' product.id %}" method="post" class="d-inline"> {% csrf_token %}
+                    <input type="submit" class=" btn btn-danger" value="Delete">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+
+
+</table>
+
+{% endblock %}
